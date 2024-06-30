@@ -55,7 +55,8 @@ public:
     rclcpp::Node * node,
     const std::string & topic,
     const std::string & format,
-    const NitrosStatisticsConfig & statistics_config = {})
+    const NitrosStatisticsConfig & statistics_config = {},
+    const rclcpp::QoS qos = rclcpp::QoS(1))
   : node_{node},
     context_{GetTypeAdapterNitrosContext()},
     nitros_type_manager_{std::make_shared<NitrosTypeManager>(node_)}
@@ -67,7 +68,7 @@ public:
 
     NitrosPublisherSubscriberConfig component_config{
       .type = nitros::NitrosPublisherSubscriberType::NEGOTIATED,
-      .qos = rclcpp::QoS(1),
+      .qos = qos,
       .compatible_data_format = format,
       .topic_name = topic
     };
