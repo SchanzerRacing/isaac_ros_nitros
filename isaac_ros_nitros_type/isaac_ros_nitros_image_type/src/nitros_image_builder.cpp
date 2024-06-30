@@ -66,9 +66,9 @@ void create_image(
   gxf_image.value()->wrapMemory(
     buffer_info, size, storage_type, data,
     [](void * ptr) {
-      RCLCPP_INFO(
-        rclcpp::get_logger("NitrosImageBuilder"),
-        "[create_image] Freed the cuda memory [%p]", ptr);
+      // RCLCPP_INFO(
+      //   rclcpp::get_logger("NitrosImageBuilder"),
+      //   "[create_image] Freed the cuda memory [%p]", ptr);
       cudaFree(ptr);
       return nvidia::gxf::Success;
     });
